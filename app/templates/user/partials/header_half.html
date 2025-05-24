@@ -1,0 +1,19 @@
+<header class="custom-header">
+	<div class="header-container">
+		<!-- Logo -->
+		<img alt="Logo" class="logo" src="{{ url_for('static', filename='assets/images/image 2.png') }}" width="150" />
+
+		<!-- Inner container -->
+		<div class="inner-container-half">
+			<!-- Logout Button -->
+			<form method="POST" action="{{ url_for('user.logout_user') }}" style="margin-left: 1rem;" onsubmit="return confirmLogout();">
+				<button type="submit" class="custom-link text-white">Έξοδος</button>
+			</form>
+		</div>
+	</div>
+	<script>
+		function confirmLogout() {
+			return confirm("Είστε σίγουρος ότι θέλετε να αποσυνδεθείτε;");
+		}
+	</script>
+</header>

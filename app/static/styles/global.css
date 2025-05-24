@@ -1,0 +1,42 @@
+header {
+    position: relative;
+    z-index: 10;
+  }
+  
+
+/* 🔵 Decorative Blue Curved Background like Image */
+body::before {
+    content: '';
+    position: absolute;
+    top: 88px;
+    left: 0;
+    width: 100%;
+    height: 900px; /* Adjust height as needed */
+    background: linear-gradient(to right, #0e83aa, #12AFE2);
+    clip-path: ellipse(100% 60% at 50% 0%);
+    z-index: 0;
+  }
+  
+  /* Optional: Top Fade for Depth */
+  body::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 480px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.07), transparent);
+    clip-path: polygon(50% 0%, 100% 0, 100% 90%, 50% 100%, 0 90%, 0 0);
+    z-index: 0;
+  }
+  
+  /* 🔼 Ensures main content stays above decorative background */
+  main {
+    position: relative;
+    z-index: 1;
+  }
+  
+
+.box{
+  background-color: white;
+}

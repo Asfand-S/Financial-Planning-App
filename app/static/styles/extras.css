@@ -1,0 +1,44 @@
+.heading-light {
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.heading-dark {
+    font-size: 2rem;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.section-frame {
+    background-color: white;
+    padding: 1rem 2rem;
+    border-color: black;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 2rem;
+    border-width: 2px;
+}
+
+.notes-text-area {
+    padding: 1rem;
+    width: 100%;
+    height: 15rem;
+    border: 1px solid #ccc;
+    border-radius: 1rem;
+    font-size: 1rem;
+    resize: none;
+}
+
+.form-section,
+.notes-section {
+    display: none;
+}
+
+.form-section.active,
+.notes-section.active {
+    display: block;
+}

@@ -1,0 +1,73 @@
+<div id="loanSection">
+    <!-- User loan -->
+    <div id="loan-container">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4" style="padding: 1rem 4rem;">
+            <div>
+                <label class="font-bold block mb2">Δανειακές Υποχρεώσεις:</label>
+                <select name="loan_type[]" class="w-full border border-gray-300 rounded-lg p-2">
+                    <option>Μισθός</option>
+                    <option>Ελεύθερος Επαγγελματίας</option>
+                    <option>Επένδυση</option>
+                </select>
+            </div>
+            <div>
+                <label class="font-bold block mb2">Ακίνητο Κεφάλαιο:</label>
+                <input name="loan_capital[]" class="w-full border border-gray-300 rounded-lg p-2" type="number" />
+            </div>
+
+            <div>
+                <label class="font-bold block mb2">Επιτόκιο:</label>
+                <input name="loan_interest[]" class="w-full border border-gray-300 rounded-lg p-2" type="number" />
+            </div>
+            <div>
+                <label class="font-bold block mb2">Μηνιαία Δόση:</label>
+                <input name="loan_monthly[]" class="w-full border border-gray-300 rounded-lg p-2" type="number" />
+            </div>
+
+            <div>
+                <label class="font-bold block mb2">Λήξη:</label>
+                <input name="loan_due_date[]" class="w-full border border-gray-300 rounded-lg p-2" type="date" />
+            </div>
+        </div>
+    </div>
+
+    <hr class="border-gray-300 border-t-2" />
+    <div style="padding: 2rem 4rem;">
+        <button id="add-loan" type="button" class="normal-button">
+            <i class="fas fa-plus mr-2"></i>
+            Προσθήκη Δανείου
+        </button>
+    </div>
+</div>
+
+<template id="loan-template">
+    <hr class="border-gray-300 border-t-2" />
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4" style="padding: 1rem 4rem;">
+        <div>
+            <label class="font-bold block mb2">Δανειακές Υποχρεώσεις:</label>
+            <select name="loan_type[]" class="w-full border border-gray-300 rounded-lg p-2">
+                <option>Μισθός</option>
+                <option>Ελεύθερος Επαγγελματίας</option>
+                <option>Επένδυση</option>
+            </select>
+        </div>
+        <div>
+            <label class="font-bold block mb2">Ακίνητο Κεφάλαιο:</label>
+            <input name="loan_capital[]" class="w-full border border-gray-300 rounded-lg p-2" type="number" />
+        </div>
+
+        <div>
+            <label class="font-bold block mb2">Επιτόκιο:</label>
+            <input name="loan_interest[]" class="w-full border border-gray-300 rounded-lg p-2" type="number" />
+        </div>
+        <div>
+            <label class="font-bold block mb2">Μηνιαία Δόση:</label>
+            <input name="loan_monthly[]" class="w-full border border-gray-300 rounded-lg p-2" type="number" />
+        </div>
+
+        <div>
+            <label class="font-bold block mb2">Λήξη:</label>
+            <input name="loan_due_date[]" class="w-full border border-gray-300 rounded-lg p-2" type="date" />
+        </div>
+    </div>
+</template>

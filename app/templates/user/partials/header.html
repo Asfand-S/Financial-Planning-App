@@ -1,0 +1,48 @@
+<header class="custom-header">
+	<div class="header-container">
+		<!-- Logo -->
+		<a href="{{ url_for('user.clients') }}">
+			<img alt="Logo" class="logo" src="{{ url_for('static', filename='assets/images/image 2.png') }}" width="150" />
+		</a>
+
+		<!-- Inner container -->
+		<div class="inner-container">
+			<!-- Mobile Menu Button -->
+			<button id="mobileMenuButton" class="mobile-button">
+				<svg class="menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+						d="M4 6h16M4 12h16M4 18h16" />
+				</svg>
+			</button>
+
+			<!-- Navigation Links -->
+			<nav id="navLinks" class="custom-nav">
+				<a class="custom-link {% if 'general' in request.path %}active-link{% endif %}" href="{{ url_for('user.general') }}">Γενικά Στοιχεία</a>
+				<a class="custom-link {% if 'financials' in request.path %}active-link{% endif %}" href="{{ url_for('user.financials') }}">Οικονομικά Στοιχεία</a>
+				<a class="custom-link {% if 'properties' in request.path %}active-link{% endif %}" href="{{ url_for('user.properties') }}">Ακίνητα</a>
+				<a class="custom-link {% if 'insurances' in request.path %}active-link{% endif %}" href="{{ url_for('user.insurances') }}">Ασφάλειες</a>
+				<a class="custom-link {% if 'investments' in request.path %}active-link{% endif %}" href="{{ url_for('user.investments') }}">Επενδύσεις</a>
+			</nav>
+
+			<!-- Study Page Icon -->
+			<a href="{{ url_for('user.study') }}">
+				<img src="{{ url_for('static', filename='assets/images/Group 50.png') }}" alt="Search" class="search-icon" />
+			</a>
+
+			<!-- Generate PDF Button -->
+			<form method="POST" action="{{ url_for('user.generate_pdf') }}" style="margin-left: 1rem;">
+				<button type="submit" class="custom-link text-white">Δημιουργία Αναφοράς</button>
+			</form>
+
+			<!-- Logout Button -->
+			<form method="POST" action="{{ url_for('user.logout_user') }}" style="margin-left: 1rem;" onsubmit="return confirmLogout();">
+				<button type="submit" class="custom-link text-white">Έξοδος</button>
+			</form>
+		</div>
+	</div>
+	<script>
+		function confirmLogout() {
+			return confirm("Είστε σίγουρος ότι θέλετε να αποσυνδεθείτε;");
+		}
+	</script>
+</header>

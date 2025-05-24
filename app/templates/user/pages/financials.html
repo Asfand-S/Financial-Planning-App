@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Οικονομικά Στοιχεία</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/styles/button.css">
+    <link rel="stylesheet" href="/static/styles/global.css">
+    <link rel="stylesheet" href="/static/styles/header.css">
+    <link rel="stylesheet" href="/static/styles/extras.css">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+    {% include 'user/partials/header.html' %}
+
+    <main class="max-w-6xl mx-auto mt-4">
+        <h1 class="heading-light">Οικονομικά Στοιχεία</h1>
+
+        <form id="financial-form">
+            <section class="section-frame">
+                <div class="tab-group">
+                    <button id="income-button" type="button" class="tab-button">Έσοδα</button>
+                    <button id="expense-button" type="button" class="tab-button">Έξοδα</button>
+                    <button id="loan-button" type="button" class="tab-button">Δάνεια</button>
+                </div>
+
+                <div id="income-form-container" class="form-section"></div>
+                <div id="expense-form-container" class="form-section"></div>
+                <div id="loan-form-container" class="form-section"></div>
+            </section>
+
+            <section class="section-frame">
+                <h2 class="heading-dark">Σημειώσεις</h2>
+
+                <textarea id="income-notes" name="income-notes" class="notes-text-area notes-section"></textarea>
+                <textarea id="expense-notes" name="expense-notes" class="notes-text-area notes-section"></textarea>
+                <textarea id="loan-notes" name="loan-notes" class="notes-text-area notes-section"></textarea>
+
+                <div class="text-center">
+                    <button type="submit" id="save-button" class="normal-button">Αποθήκευση</button>
+                </div>
+                <div id="save-success-message" class="text-center" style="display:none; margin-top: 10px;">
+                    Τα δεδομένα αποθηκεύτηκαν με επιτυχία!
+                </div>
+            </section>
+        </form>
+    </main>
+
+    <script src="{{ url_for('static', filename='scripts/financials.js') }}"></script>
+</body>
+
+</html>

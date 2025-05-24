@@ -1,0 +1,212 @@
+<div id="expenseSection">
+    <!-- User expense -->
+    <div id="person-expense-container">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4" style="padding: 1rem 4rem;">
+            <div>
+                <label class="font-bold block mb2">Ποσό:</label>
+                <input name="person_expense_amount[]" class="w-full border border-gray-300 rounded-lg p-2"
+                    type="number" />
+            </div>
+            <div>
+                <label class="font-bold block mb2">Τομείς Εξόδων:</label>
+                <select name="person_expense_sector[]" class="w-full border border-gray-300 rounded-lg p-2">
+                    <option>Μισθός</option>
+                    <option>Ελεύθερος Επαγγελματίας</option>
+                    <option>Επένδυση</option>
+                </select>
+            </div>
+            <div>
+                <label class="font-bold block mb2">Ημ/νία Έναρξης:</label>
+                <input name="person_expense_start_date[]" class="w-full border border-gray-300 rounded-lg p-2"
+                    type="date" />
+            </div>
+            <div>
+                <label class="font-bold block mb2">Ημ/νία Λήξης:</label>
+                <input name="person_expense_end_date[]" class="w-full border border-gray-300 rounded-lg p-2"
+                    type="date" />
+            </div>
+        </div>
+    </div>
+
+    <hr class="border-gray-300 border-t-2" />
+    <div style="padding: 2rem 4rem;">
+        <button id="add-person-expense" type="button" class="normal-button">
+            <i class="fas fa-plus mr-2"></i>
+            Προσθήκη Πηγής Εσόδων
+        </button>
+    </div>
+
+    <div class="person-loan-entry relative">
+        <hr class="border-gray-300 border-t-2" />
+        <!-- Remove button -->
+        <button type="button" onclick="this.closest('.person-loan-entry').remove()"
+            class="absolute top-2 right-2 text-red-600 hover:text-red-800">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4" style="padding: 1rem 4rem;">
+            <div>
+                <label class="font-bold block mb2">Δανειακές Υποχρεώσεις:</label>
+                <select name="expense_loan_type" class="w-full border border-gray-300 rounded-lg p-2">
+                    <option>Μισθός</option>
+                    <option>Ελεύθερος Επαγγελματίας</option>
+                    <option>Επένδυση</option>
+                </select>
+            </div>
+            <div>
+                <label class="font-bold block mb2">Άληκτο Κεφάλαιο:</label>
+                <input name="expense_loan_capital" class="w-full border border-gray-300 rounded-lg p-2" type="number" />
+            </div>
+            <div>
+                <label class="font-bold block mb2">Επιτόκιο:</label>
+                <input name="expense_loan_interest" class="w-full border border-gray-300 rounded-lg p-2"
+                    type="number" />
+            </div>
+            <div>
+                <label class="font-bold block mb2">Λήξη:</label>
+                <input name="expense_loan_due" class="w-full border border-gray-300 rounded-lg p-2" type="date" />
+            </div>
+        </div>
+    </div>
+
+    <hr class="border-blue-300 border-t-4" />
+
+    <!-- Spouse expense -->
+    <div id="spouse-expense-container">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4" style="padding: 1rem 4rem;">
+            <div>
+                <label class="font-bold block mb2">Ποσό Συζύγου:</label>
+                <input name="spouse_expense_amount[]" class="w-full border border-gray-300 rounded-lg p-2"
+                    type="number" />
+            </div>
+            <div>
+                <label class="font-bold block mb2">Τομείς Εξόδων Συζύγου:</label>
+                <select name="spouse_expense_sector[]" class="w-full border border-gray-300 rounded-lg p-2">
+                    <option>Μισθός</option>
+                    <option>Ελεύθερος Επαγγελματίας</option>
+                    <option>Επένδυση</option>
+                </select>
+            </div>
+            <div>
+                <label class="font-bold block mb2">Ημ/νία Έναρξης:</label>
+                <input name="spouse_expense_start_date[]" class="w-full border border-gray-300 rounded-lg p-2"
+                    type="date" />
+            </div>
+            <div>
+                <label class="font-bold block mb2">Ημ/νία Λήξης:</label>
+                <input name="spouse_expense_end_date[]" class="w-full border border-gray-300 rounded-lg p-2"
+                    type="date" />
+            </div>
+        </div>
+    </div>
+
+    <hr class="border-gray-300 border-t-2" />
+    <div style="padding: 2rem 4rem;">
+        <button id="add-spouse-expense" type="button" class="normal-button">
+            <i class="fas fa-plus mr-2"></i>
+            Προσθήκη Πηγής Εσόδων
+        </button>
+    </div>
+
+    <div class="spouse-loan-entry relative">
+        <hr class="border-gray-300 border-t-2" />
+        <!-- Remove button -->
+        <button type="button" onclick="this.closest('.spouse-loan-entry').remove()"
+            class="absolute top-2 right-2 text-red-600 hover:text-red-800">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4" style="padding: 1rem 4rem;">
+            <div>
+                <label class="font-bold block mb2">Δανειακές Υποχρεώσεις:</label>
+                <select name="spouse_loan_type" class="w-full border border-gray-300 rounded-lg p-2">
+                    <option>Μισθός</option>
+                    <option>Ελεύθερος Επαγγελματίας</option>
+                    <option>Επένδυση</option>
+                </select>
+            </div>
+            <div>
+                <label class="font-bold block mb2">Ακίνητο Κεφάλαιο:</label>
+                <input name="spouse_loan_capital" class="w-full border border-gray-300 rounded-lg p-2" type="number" />
+            </div>
+            <div>
+                <label class="font-bold block mb2">Επιτόκιο:</label>
+                <input name="spouse_loan_interest" class="w-full border border-gray-300 rounded-lg p-2" type="number" />
+            </div>
+            <div>
+                <label class="font-bold block mb2">Λήξη:</label>
+                <input name="spouse_loan_due" class="w-full border border-gray-300 rounded-lg p-2" type="date" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<template id="person-expense-template">
+    <div class="person-expense-entry relative">
+        <hr class="border-gray-300 border-t-2" />
+        <!-- Remove button -->
+        <button type="button" onclick="this.closest('.person-expense-entry').remove()"
+            class="absolute top-2 right-2 text-red-600 hover:text-red-800">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4" style="padding: 1rem 4rem;">
+            <div>
+                <label class="font-bold block mb2">Ποσό:</label>
+                <input name="person_expense_amount[]" class="w-full border border-gray-300 rounded-lg p-2"
+                    type="number" />
+            </div>
+            <div>
+                <label class="font-bold block mb2">Τομείς Εξόδων:</label>
+                <select name="person_expense_sector[]" class="w-full border border-gray-300 rounded-lg p-2">
+                    <option>Μισθός</option>
+                    <option>Ελεύθερος Επαγγελματίας</option>
+                    <option>Επένδυση</option>
+                </select>
+            </div>
+            <div>
+                <label class="font-bold block mb2">Ημ/νία Έναρξης:</label>
+                <input name="person_expense_start_date[]" class="w-full border border-gray-300 rounded-lg p-2"
+                    type="date" />
+            </div>
+            <div>
+                <label class="font-bold block mb2">Ημ/νία Λήξης:</label>
+                <input name="person_expense_end_date[]" class="w-full border border-gray-300 rounded-lg p-2"
+                    type="date" />
+            </div>
+        </div>
+    </div>
+</template>
+
+<template id="spouse-expense-template">
+    <div class="spouse-expense-entry relative">
+        <hr class="border-gray-300 border-t-2" />
+        <!-- Remove button -->
+        <button type="button" onclick="this.closest('.spouse-expense-entry').remove()"
+            class="absolute top-2 right-2 text-red-600 hover:text-red-800">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4" style="padding: 1rem 4rem;">
+            <div>
+                <label class="font-bold block mb2">Ποσό Συζύγου:</label>
+                <input name="spouse_expense_amount[]" class="w-full border border-gray-300 rounded-lg p-2"
+                    type="number" />
+            </div>
+            <div>
+                <label class="font-bold block mb2">Τομείς Εξόδων Συζύγου:</label>
+                <select name="spouse_expense_sector[]" class="w-full border border-gray-300 rounded-lg p-2">
+                    <option>Μισθός</option>
+                    <option>Ελεύθερος Επαγγελματίας</option>
+                    <option>Επένδυση</option>
+                </select>
+            </div>
+            <div>
+                <label class="font-bold block mb2">Ημ/νία Έναρξης:</label>
+                <input name="spouse_expense_start_date[]" class="w-full border border-gray-300 rounded-lg p-2"
+                    type="date" />
+            </div>
+            <div>
+                <label class="font-bold block mb2">Ημ/νία Λήξης:</label>
+                <input name="spouse_expense_end_date[]" class="w-full border border-gray-300 rounded-lg p-2"
+                    type="date" />
+            </div>
+        </div>
+    </div>
+</template>

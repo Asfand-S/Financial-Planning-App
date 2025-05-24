@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Γενικά Στοιχεία</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/styles/button.css">
+    <link rel="stylesheet" href="/static/styles/global.css">
+    <link rel="stylesheet" href="/static/styles/header.css">
+    <link rel="stylesheet" href="/static/styles/extras.css">
+
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+    {% include 'user/partials/header.html' %}
+
+    <main class="max-w-6xl mx-auto mt-4">
+        <h1 class="heading-light">Γενικά Στοιχεία</h1>
+
+        <form id="general-form">
+            <section class="section-frame">
+
+                <!-- Personal Information -->
+                <div id="personSection" class="relative" style="padding: 1rem 4rem;">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6">
+                        <div class="form-group">
+                            <label class="font-bold block mb-2">Ονοματεπώνυμο:</label>
+                            <input class="w-full border border-gray-300 p-2 rounded" name="full_name" type="text" />
+                        </div>
+                        <div class="form-group">
+                            <label class="font-bold block mb-2">Ημερομηνία Γέννησης:</label>
+                            <input class="w-full border border-gray-300 p-2 rounded" name="dob" type="date" />
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="font-bold block mb-2">Επάγγελμα:</label>
+                        <select class="w-full border border-gray-300 p-2 rounded" name="profession">
+                            <option>Επιλογή</option>
+                            <option>Υπάλληλος</option>
+                            <option>Ελεύθερος Επαγγελματίας</option>
+                            <option>Συνταξιούχος</option>
+                            <option>Άνεργος</option>
+                        </select>
+                    </div>
+                </div>
+                <hr class="border-gray-300 border-t-2" />
+
+                <!-- Spouse Information -->
+                <div id="spouseSection" class="relative" style="padding: 1rem 4rem;">
+                    <!-- Remove Button (top-right corner) -->
+                    <button type="button" onclick="document.getElementById('spouseSection').remove()"
+                        class="absolute top-2 right-2 text-red-600 hover:text-red-800 focus:outline-none"
+                        aria-label="Remove spouse entry">
+                        <i class="fas fa-times"></i>
+                    </button>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6">
+                        <div class="form-group">
+                            <label class="font-bold block mb-2">Ονοματεπώνυμο Συζύγου:</label>
+                            <input class="w-full border border-gray-300 p-2 rounded" name="spouse_full_name"
+                                type="text" />
+                        </div>
+                        <div class="form-group">
+                            <label class="font-bold block mb-2">Ημερομηνία Γέννησης:</label>
+                            <input class="w-full border border-gray-300 p-2 rounded" name="spouse_dob" type="date" />
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="font-bold block mb-2">Επάγγελμα:</label>
+                        <select class="w-full border border-gray-300 p-2 rounded" name="spouse_profession">
+                            <option>Επιλογή</option>
+                            <option>Υπάλληλος</option>
+                            <option>Ελεύθερος Επαγγελματίας</option>
+                            <option>Συνταξιούχος</option>
+                            <option>Άνεργος</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Children Section -->
+                <div id="childrenContainer" class="space-y-6"></div>
+
+                <div style="padding: 1rem 4rem;">
+                    <button id="addChildButton" type="button" class="normal-button">
+                        <i class="fas fa-plus mr-2"></i>
+                        Προσθήκη Παιδιού
+                    </button>
+                </div>
+            </section>
+
+            <section class="section-frame">
+                <h2 class="heading-dark">Σημειώσεις</h2>
+                <textarea name="notes" class="notes-text-area"></textarea>
+                <div class="text-center">
+                    <button type="submit" id="save-button" class="normal-button">Αποθήκευση</button>
+                </div>
+                <div id="save-success-message" class="text-center" style="display:none; margin-top: 10px;">
+                    Τα δεδομένα αποθηκεύτηκαν με επιτυχία!
+                </div>
+            </section>
+        </form>
+    </main>
+
+    <template id="childTemplate">
+        <div class="child-entry relative">
+            <hr class="border-gray-300 border-t-2" />
+            <div style="padding: 1rem 4rem;">
+                <!-- Remove Button (top-right corner) -->
+                <button type="button" onclick="this.closest('.child-entry').remove()"
+                    class="absolute top-2 right-2 text-red-600 hover:text-red-800 focus:outline-none"
+                    aria-label="Remove child entry">
+                    <i class="fas fa-times"></i>
+                </button>
+
+                <!-- Name & Birthdate -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-4 mt-2">
+                    <div>
+                        <label class="font-bold block mb-2">Ονοματεπώνυμο Παιδιού:</label>
+                        <input type="text" name="child_name[]"
+                            class="w-full border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" />
+                    </div>
+                    <div>
+                        <label class="font-bold block mb-2">Ημερομηνία Γέννησης:</label>
+                        <input type="date" name="child_dob[]"
+                            class="w-full border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" />
+                    </div>
+                </div>
+
+                <!-- Occupation -->
+                <div class="mb-6">
+                    <label class="font-bold block mb-2">Επάγγελμα:</label>
+                    <select name="child_profession[]"
+                        class="w-full border border-gray-300 p-2 rounded focus:outline-none">
+                        <option>Επιλογή</option>
+                        <option>Φοιτητής</option>
+                        <option>Μαθητής</option>
+                        <option>Εργαζόμενος</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script src="{{ url_for('static', filename='scripts/general.js') }}"></script>
+</body>
+
+</html>

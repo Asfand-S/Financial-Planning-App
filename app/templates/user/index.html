@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/global.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/button.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/extras.css') }}">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+    {% include 'user/partials/header_empty.html' %}
+
+    <main class="max-w-6xl mx-auto mt-4">
+        <h1 class="heading-light">Είσοδος</h1>
+
+        <section class="section-frame">
+            <form id="loginForm" method="POST" action="/" class="space-y-4">
+                <div>
+                    <label class="font-bold block mb-2">Όνομα χρήστη</label>
+                    <input type="text" name="username" class="w-full border border-gray-300 p-2 rounded" required />
+                </div>
+                <div>
+                    <label class="font-bold block mb-2">Κωδικός πρόσβασης</label>
+                    <input type="password" name="password" class="w-full border border-gray-300 p-2 rounded" required />
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="normal-button">Είσοδος</button>
+                </div>
+            </form>
+            {% if error %}
+            <p class="text-red-500 text-sm text-center mt-2">{{ error }}</p>
+            {% endif %}
+        </section>
+    </main>
+</body>
+
+</html>

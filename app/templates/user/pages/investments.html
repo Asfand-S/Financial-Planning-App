@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Επενδύσεις</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/styles/button.css">
+    <link rel="stylesheet" href="/static/styles/global.css">
+    <link rel="stylesheet" href="/static/styles/header.css">
+    <link rel="stylesheet" href="/static/styles/extras.css">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+    {% include 'user/partials/header.html' %}
+
+    <main class="max-w-6xl mx-auto mt-4">
+        <h1 class="heading-light">Επενδύσεις</h1>
+
+        <form id="investment-form">
+            <section class="section-frame">
+                <div id="investmentsContainer">
+                    <!-- Initial Investment Entry -->
+                    <div class="investment-entry relative">
+                        <!-- Remove button -->
+                        <button type="button" onclick="this.closest('.investment-entry').remove()"
+                            class="absolute top-2 right-2 text-red-600 hover:text-red-800">
+                            <i class="fas fa-times"></i>
+                        </button>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4" style="padding: 1rem 4rem;">
+                            <div>
+                                <label class="font-bold block mb-2">Είδος Επένδυσης:</label>
+                                <select class="w-full border border-gray-300 rounded-md p-2" name="investment_type[]">
+                                    <option>Επιλογή</option>
+                                    <option>Μετοχές</option>
+                                    <option>Ομόλογα</option>
+                                    <option>Αμοιβαία Κεφάλαια</option>
+                                    <option>Ακίνητα</option>
+                                    <option>Άλλο</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="font-bold block mb-2">Λόγος Επένδυσης:</label>
+                                <input class="w-full border border-gray-300 rounded-md p-2" name="investment_reason[]"
+                                    type="text" />
+                            </div>
+
+                            <div>
+                                <label class="font-bold block mb-2">Σημερινή Αξία:</label>
+                                <input class="w-full border border-gray-300 rounded-md p-2" name="current_value[]"
+                                    type="text" />
+                            </div>
+                            <div>
+                                <label class="font-bold block mb-2">Κάτοχος:</label>
+                                <input class="w-full border border-gray-300 rounded-md p-2" name="holder[]"
+                                    type="text" />
+                            </div>
+
+                            <div>
+                                <label class="font-bold block mb-2">Ημ/νία Έναρξης:</label>
+                                <input class="w-full border border-gray-300 rounded-md p-2" name="start_date[]"
+                                    type="date" />
+                            </div>
+                            <div>
+                                <label class="font-bold block mb-2">Ημ/νία Λήξης:</label>
+                                <input class="w-full border border-gray-300 rounded-md p-2" name="end_date[]"
+                                    type="date" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="border-gray-300 border-t-2" />
+                <div style="padding: 1rem 4rem;">
+                    <button id="addInvestmentButton" type="button" class="normal-button">
+                        <i class="fas fa-plus mr-2"></i>
+                        Προσθήκη Επένδυσης
+                    </button>
+                </div>
+            </section>
+
+            <section class="section-frame">
+                <h2 class="heading-dark">Σημειώσεις</h2>
+                <textarea name="notes" class="notes-text-area"></textarea>
+                <div class="text-center">
+                    <button type="submit" id="save-button" class="normal-button">Αποθήκευση</button>
+                </div>
+                <div id="save-success-message" class="text-center" style="display:none; margin-top: 10px;">
+                    Τα δεδομένα αποθηκεύτηκαν με επιτυχία!
+                </div>
+            </section>
+        </form>
+    </main>
+
+    <template id="investmentTemplate">
+        <div class="investment-entry relative">
+            <hr class="border-gray-300 border-t-2" />
+            <!-- Remove button -->
+            <button type="button" onclick="this.closest('.investment-entry').remove()"
+                class="absolute top-2 right-2 text-red-600 hover:text-red-800">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4" style="padding: 1rem 4rem;">
+                <div>
+                    <label class="font-bold block mb-2">Είδος Επένδυσης:</label>
+                    <select class="w-full border border-gray-300 rounded-md p-2" name="investment_type[]">
+                        <option>Επιλογή</option>
+                        <option>Μετοχές</option>
+                        <option>Ομόλογα</option>
+                        <option>Αμοιβαία Κεφάλαια</option>
+                        <option>Ακίνητα</option>
+                        <option>Άλλο</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="font-bold block mb-2">Λόγος Επένδυσης:</label>
+                    <input class="w-full border border-gray-300 rounded-md p-2" name="investment_reason[]"
+                        type="text" />
+                </div>
+
+                <div>
+                    <label class="font-bold block mb-2">Σημερινή Αξία:</label>
+                    <input class="w-full border border-gray-300 rounded-md p-2" name="current_value[]" type="text" />
+                </div>
+                <div>
+                    <label class="font-bold block mb-2">Κάτοχος:</label>
+                    <input class="w-full border border-gray-300 rounded-md p-2" name="holder[]" type="text" />
+                </div>
+
+                <div>
+                    <label class="font-bold block mb-2">Ημ/νία Έναρξης:</label>
+                    <input class="w-full border border-gray-300 rounded-md p-2" name="start_date[]" type="date" />
+                </div>
+                <div>
+                    <label class="font-bold block mb-2">Ημ/νία Λήξης:</label>
+                    <input class="w-full border border-gray-300 rounded-md p-2" name="end_date[]" type="date" />
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script src="{{ url_for('static', filename='scripts/investments.js') }}"></script>
+</body>
+
+</html>

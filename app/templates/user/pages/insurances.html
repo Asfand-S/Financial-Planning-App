@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Οικονομικά Στοιχεία</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/styles/button.css">
+    <link rel="stylesheet" href="/static/styles/global.css">
+    <link rel="stylesheet" href="/static/styles/header.css">
+    <link rel="stylesheet" href="/static/styles/extras.css">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+    {% include 'user/partials/header.html' %}
+
+    <main class="max-w-6xl mx-auto mt-4">
+        <h1 class="heading-light">Οικονομικά Στοιχεία</h1>
+
+        <form id="insurance-form">
+            <section class="section-frame">
+                <div class="tab-group">
+                    <button id="group-button" type="button" class="tab-button">Ομαδική</button>
+                    <button id="individual-button" type="button" class="tab-button">Ατομική</button>
+                    <button id="savings-button" type="button" class="tab-button">Αποταμιευτική</button>
+                    <button id="property-button" type="button" class="tab-button">Περιουσίας</button>
+                    <button id="vehicle-button" type="button" class="tab-button">Οχημάτων</button>
+                    <button id="boat-button" type="button" class="tab-button">Σκαφών</button>
+                </div>
+
+                <div id="group-form-container" class="form-section"></div>
+                <div id="individual-form-container" class="form-section"></div>
+                <div id="savings-form-container" class="form-section"></div>
+                <div id="property-form-container" class="form-section"></div>
+                <div id="vehicle-form-container" class="form-section"></div>
+                <div id="boat-form-container" class="form-section"></div>
+            </section>
+
+            <section class="section-frame">
+                <h2 class="heading-dark">Σημειώσεις</h2>
+
+                <textarea id="group-notes" name="group-notes" class="notes-text-area notes-section"></textarea>
+                <textarea id="individual-notes" name="individual-notes" class="notes-text-area notes-section"></textarea>
+                <textarea id="savings-notes" name="savings-notes" class="notes-text-area notes-section"></textarea>
+                <textarea id="property-notes" name="property-notes" class="notes-text-area notes-section"></textarea>
+                <textarea id="vehicle-notes" name="vehicle-notes" class="notes-text-area notes-section"></textarea>
+                <textarea id="boat-notes" name="boat-notes" class="notes-text-area notes-section"></textarea>
+                <div class="text-center">
+                    <button type="submit" id="save-button" class="normal-button">Αποθήκευση</button>
+                </div>
+                <div id="save-success-message" class="text-center" style="display:none; margin-top: 10px;">
+                    Τα δεδομένα αποθηκεύτηκαν με επιτυχία!
+                </div>
+            </section>
+        </form>
+    </main>
+
+    <script src="{{ url_for('static', filename='scripts/insurances.js') }}"></script>
+</body>
+
+</html>

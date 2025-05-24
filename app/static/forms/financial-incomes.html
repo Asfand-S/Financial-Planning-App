@@ -1,0 +1,151 @@
+<div id="incomeSection">
+    <!-- User Income -->
+    <div id="person-income-container">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4" style="padding: 1rem 4rem;">
+            <div>
+                <label class="font-bold block mb2">Ποσό:</label>
+                <input name="person_income_amount[]" class="w-full border border-gray-300 rounded-md p-2"
+                    type="number" />
+            </div>
+            <div>
+                <label class="font-bold block mb2">Πηγές Εσόδων:</label>
+                <select name="person_income_source[]" class="w-full border border-gray-300 rounded-lg p-2">
+                    <option>Μισθός</option>
+                    <option>Ελεύθερος Επαγγελματίας</option>
+                    <option>Επένδυση</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="font-bold block mb2">Ημ/νία Έναρξης:</label>
+                <input name="person_income_start_date[]" class="w-full border border-gray-300 rounded-lg p-2"
+                    type="date" />
+            </div>
+            <div>
+                <label class="font-bold block mb2">Ημ/νία Λήξης:</label>
+                <input name="person_income_end_date[]" class="w-full border border-gray-300 rounded-lg p-2"
+                    type="date" />
+            </div>
+        </div>
+    </div>
+    <hr class="border-gray-300 border-t-2" />
+    <div style="padding: 2rem 4rem;">
+        <button id="add-person-income" type="button" class="normal-button">
+            <i class="fas fa-plus mr-2"></i>
+            Προσθήκη Πηγής Εσόδων
+        </button>
+    </div>
+
+    <hr class="border-blue-300 border-t-4" />
+
+    <!-- Spouse Income -->
+    <div id="spouse-income-container">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4" style="padding: 1rem 4rem;">
+            <div>
+                <label class="font-bold block mb2">Ποσό Συζύγου:</label>
+                <input name="spouse_income_amount[]" class="w-full border border-gray-300 rounded-lg p-2"
+                    type="number" />
+            </div>
+            <div>
+                <label class="font-bold block mb2">Πηγές Εσόδων Συζύγου:</label>
+                <select name="spouse_income_source[]" class="w-full border border-gray-300 rounded-lg p-2">
+                    <option>Μισθός</option>
+                    <option>Ελεύθερος Επαγγελματίας</option>
+                    <option>Επένδυση</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="font-bold block mb2">Ημ/νία Έναρξης:</label>
+                <input name="spouse_income_start_date[]" class="w-full border border-gray-300 rounded-lg p-2"
+                    type="date" />
+            </div>
+            <div>
+                <label class="font-bold block mb2">Ημ/νία Λήξης:</label>
+                <input name="spouse_income_end_date[]" class="w-full border border-gray-300 rounded-lg p-2"
+                    type="date" />
+            </div>
+        </div>
+    </div>
+    <hr class="border-gray-300 border-t-2" />
+    <div style="padding: 2rem 4rem;">
+        <button id="add-spouse-income" type="button" class="normal-button">
+            <i class="fas fa-plus mr-2"></i>
+            Προσθήκη Πηγής Εσόδων
+        </button>
+    </div>
+</div>
+
+<template id="person-income-template">
+    <div class="person-income-entry relative">
+        <hr class="border-gray-300 border-t-2" />
+        <!-- Remove button -->
+        <button type="button" onclick="this.closest('.person-income-entry').remove()"
+            class="absolute top-2 right-2 text-red-600 hover:text-red-800">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4" style="padding: 1rem 4rem;">
+            <div>
+                <label class="font-bold block mb2">Ποσό:</label>
+                <input name="person_income_amount[]" class="w-full border border-gray-300 rounded-md p-2"
+                    type="number" />
+            </div>
+            <div>
+                <label class="font-bold block mb2">Πηγές Εσόδων:</label>
+                <select name="person_income_source[]" class="w-full border border-gray-300 rounded-lg p-2">
+                    <option>Μισθός</option>
+                    <option>Ελεύθερος Επαγγελματίας</option>
+                    <option>Επένδυση</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="font-bold block mb2">Ημ/νία Έναρξης:</label>
+                <input name="person_income_start_date[]" class="w-full border border-gray-300 rounded-lg p-2"
+                    type="date" />
+            </div>
+            <div>
+                <label class="font-bold block mb2">Ημ/νία Λήξης:</label>
+                <input name="person_income_end_date[]" class="w-full border border-gray-300 rounded-lg p-2"
+                    type="date" />
+            </div>
+        </div>
+    </div>
+</template>
+
+<template id="spouse-income-template">
+    <div class="spouse-income-entry relative">
+        <hr class="border-gray-300 border-t-2" />
+        <!-- Remove button -->
+        <button type="button" onclick="this.closest('.spouse-income-entry').remove()"
+            class="absolute top-2 right-2 text-red-600 hover:text-red-800">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4" style="padding: 1rem 4rem;">
+            <div>
+                <label class="font-bold block mb2">Ποσό Συζύγου:</label>
+                <input name="spouse_income_amount[]" class="w-full border border-gray-300 rounded-lg p-2"
+                    type="number" />
+            </div>
+            <div>
+                <label class="font-bold block mb2">Πηγές Εσόδων Συζύγου:</label>
+                <select name="spouse_income_source[]" class="w-full border border-gray-300 rounded-lg p-2">
+                    <option>Μισθός</option>
+                    <option>Ελεύθερος Επαγγελματίας</option>
+                    <option>Επένδυση</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="font-bold block mb2">Ημ/νία Έναρξης:</label>
+                <input name="spouse_income_start_date[]" class="w-full border border-gray-300 rounded-lg p-2"
+                    type="date" />
+            </div>
+            <div>
+                <label class="font-bold block mb2">Ημ/νία Λήξης:</label>
+                <input name="spouse_income_end_date[]" class="w-full border border-gray-300 rounded-lg p-2"
+                    type="date" />
+            </div>
+        </div>
+    </div>
+</template>

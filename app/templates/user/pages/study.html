@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<title>Μελέτη</title>
+	<script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/styles/button.css">
+    <link rel="stylesheet" href="/static/styles/global.css">
+    <link rel="stylesheet" href="/static/styles/header.css">
+    <link rel="stylesheet" href="/static/styles/extras.css">
+
+	<style>
+		body {
+			font-family: 'Inter', sans-serif;
+		}
+		#chart-container {
+			max-width: 30vw;
+			width: 100%;
+			height: auto;
+			margin: auto;
+			display: flex;
+			flex-direction: column;
+			align-items: center; /* ✅ Center horizontally */
+			justify-content: center; /* Optional for vertical centering if needed */
+		}
+    </style>
+</head>
+
+<body class="bg-white">
+    {% include 'user/partials/header.html' %}
+
+	<main class="max-w-6xl mx-auto mt-4">
+		<h1 class="heading-light">Μελέτη</h1>
+
+		{% if error %}
+			<p class="text-white font-semibold text-center mt-4">{{ error }}</p>
+		{% else %}
+		<section class="section-frame">
+			<div style="padding: 1rem 6rem;">
+				<h2 class="text-xl font-bold text-[#0752B4]">Ποιά είναι η τρέχουσα χρηματοοικονομική σας κατάσταση;</h2>
+				<p class="mt-2 font-bold">Σε αυτό το τμήμα της μελέτης θα σας δείξουμε πώς διαμορφώνεται η τρέχουσα
+					οικονομική σας
+					κατάσταση.</p>
+			</div>
+			<hr class="border-gray-300 border-t-2" />
+			<div style="padding: 1rem 6rem;">
+				<h2 class="text-xl font-bold text-[#0752B4] mt-6">Ποιά είναι τα εισοδήμα και οι υποχρεώσεις σας για το
+					{{ year }};
+				</h2>
+				<p class="mt-2 font-bold">Παρακάτω μπορείτε να δείτε τη σύνθεση του ετήσιου εισοδήματός σας το {{ year }}.</p>
+			</div>
+			<div class="border border-blue-600 mt-4" style="margin: 1rem 4rem;">
+				<div class="bg-[#0752B4] text-white p-2">Τύπος εισοδήματος</div>
+				{% for income in income_items %}
+					<div class="p-2 border-b border-blue-300">
+						{{ income.source }}
+						<span class="float-right">€ {{ income.formatted_amount }}</span>
+					</div>
+				{% endfor %}
+				<div class="text-black p-2">
+					Συνολικό ετήσιο εισόδημα
+					<span class="float-right">€ {{ total_income }}</span>
+				</div>
+			</div>
+			<div style="padding: 1rem 6rem;">
+				<p class="mt-4 font-bold">Το μέσο μηνιαίο εισόδημά σας το {{ year }} είναι € {{ monthly_income }}</p>
+				<br>
+				<p class="mt-2 font-bold">Από το εισόδημά σας, αφαιρείτε τα έξοδά σας. Αυτά τα έξοδα περιλαμβάνουν
+					φόρους, πάγιες
+					χρεώσεις και άλλα. Τα έξοδά σας το {{ year }}, θα είναι:</p>
+			</div>
+			<div class="border border-blue-600 mt-4" style="margin: 1rem 4rem;">
+				<div class="bg-[#0752B4] text-white p-2">Τύπος εξόδου</div>
+				{% for expense in expense_items %}
+					<div class="p-2 border-b border-blue-300">
+						{{ expense.source }}
+						<span class="float-right">€ {{ expense.formatted_amount }}</span>
+					</div>
+				{% endfor %}
+				<div class="text-black p-2">
+					Συνολικό ετήσιο έξοδα
+					<span class="float-right">€ {{ total_expenses }}</span>
+				</div>
+			</div>
+			<div style="padding: 1rem 6rem;">
+				<p class="mt-4 font-bold">Οι μέσες μηνιαίες δαπάνες σας το {{ year }} είναι € {{ monthly_expenses }}</p>
+				<br>
+				<p class="mt-2 font-bold">Το ποσό που απομένει μετά την αφαίρεση όλων των εξόδων, ονομάζεται υπόλοιπο
+					προϋπολογισμού.
+				</p>
+			</div>
+			<div class="border border-blue-600 mt-4" style="margin: 1rem 4rem;">
+				<div class="p-2 border-b border-blue-300">
+					Συνολικό ετήσιο εισόδημα
+					<span class="float-right">€ {{ total_income }}</span>
+				</div>
+
+				<div class="p-2 border-b border-blue-300">
+					Συνολικά ετήσια έξοδα
+					<span class="float-right">€ {{ total_expenses }}</span>
+				</div>
+				<div class="bg-[#0752B4] text-white p-2">
+					Συνολικό υπόλοιπο προϋπολογισμού ανά έτος
+					<span class="float-right">€ {{ balance }}</span>
+				</div>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6" style="margin: 1rem 4rem;">
+				<!-- Box 1 -->
+				<div class="border border-blue-500 p-4 h-[300px] relative w-full" style="display: flex; flex-direction: column; align-items: center;">
+					<h3 class="font-bold">Κατανομή Εισοδήματος</h3>
+
+					<!-- Pie Chart -->
+					<canvas id="incomeChart"></canvas>
+				</div>
+
+				<!-- Box 2 -->
+				<div class="border border-blue-500 p-4 h-[300px] relative w-full" style="display: flex; flex-direction: column; align-items: center;">
+					<h3 class="font-bold">Κατανομή Εξόδων</h3>
+
+					<canvas id="expenseChart"></canvas>
+				</div>
+			</div>
+
+			<div style="padding: 1rem 6rem;">
+				<p class="mt-4 font-bold">Το υπόλοιπο προϋπολογισμού σε αυτό το σενάριο ανά μήνα το {{ year }} είναι € {{ monthly_balance }}</p>
+			</div>
+		</section>
+		{% endif %}
+	</main>
+
+    <script src="{{ url_for('static', filename='scripts/study.js') }}"></script>
+	{% if not error %}
+    <script>
+		const incomeItems = {{ income_items | tojson }};
+		const expenseItems = {{ expense_items | tojson }};
+	
+		const incomeLabels = incomeItems.map(item => item.source);
+		const incomeData = incomeItems.map(item => item.amount);
+	
+		const expenseLabels = expenseItems.map(item => item.source);
+		const expenseData = expenseItems.map(item => item.amount);
+
+		const chartColors = ['#1e3a8a', '#2f5bb0', '#449ad0', '#12afe2', '#7dddf2'];
+
+		renderPieChart('incomeChart', incomeLabels, incomeData, chartColors);
+		renderPieChart('expenseChart', expenseLabels, expenseData, chartColors);
+    </script>
+	{% endif %}
+</body>
+
+</html>

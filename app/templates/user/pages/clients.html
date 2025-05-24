@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Client Manager</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/styles/button.css">
+    <link rel="stylesheet" href="/static/styles/global.css">
+    <link rel="stylesheet" href="/static/styles/header.css">
+    <link rel="stylesheet" href="/static/styles/extras.css">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+    {% include 'user/partials/header_half.html' %}
+
+    <main class="max-w-6xl mx-auto mt-4">
+        <h1 class="heading-light">Διαχείριση Πελατών</h1>
+
+        <section class="section-frame">
+            <div class="max-w-4xl mx-auto">
+                <div class="mb-4 flex justify-between items-center">
+                    <input id="searchBox" type="text" placeholder="Αναζήτηση με όνομα..."
+                        class="border p-2 rounded w-full max-w-sm mr-4">
+                    <button onclick="openAddModal()" class="normal-button">Προσθήκη Πελάτη</button>
+                </div>
+
+                <table class="w-full table-auto border-collapse">
+                    <thead>
+                        <tr class="bg-gray-200">
+                            <th class="border p-2">Όνομα</th>
+                            <th class="border p-2">Ímeil</th>
+                            <th class="border p-2">Τηλέφωνο</th>
+                            <th class="border p-2">Δεδομένα Ολοκληρώθηκαν</th>
+                            <th class="border p-2">Ενέργειες</th>
+                        </tr>
+                    </thead>
+                    <tbody id="clientTable">
+                        {% for client in clients %}
+                        <tr class="hover:bg-gray-100 cursor-pointer" data-name="{{ client.name | lower }}"
+                            onclick="openClientForm('{{ client.id }}')">
+                            <td class="border p-2">{{ client.name }}</td>
+                            <td class="border p-2">{{ client.email }}</td>
+                            <td class="border p-2">{{ client.phone }}</td>
+                            <td class="border p-2">{{ client.data_completed }}</td>
+                            <td class="border p-2 space-x-2" onclick="event.stopPropagation()">
+                                <button
+                                    onclick="openEditModal('{{ client.id }}', '{{ client.name }}', '{{ client.email }}', '{{ client.phone }}')"
+                                    class="text-blue-600">Edit</button>
+                                <button onclick="confirmDelete('{{ client.id }}')" class="text-red-600">Delete</button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal -->
+    <div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50">
+        <div class="bg-white p-6 rounded w-full max-w-md">
+            <h2 class="text-xl font-bold mb-4" id="modalTitle">Προσθήκη Πελάτη</h2>
+            <input id="name" type="text" placeholder="Όνομα" class="w-full border p-2 mb-2 rounded">
+            <input id="email" type="email" placeholder="Ímeil" class="w-full border p-2 mb-2 rounded">
+            <input id="phone" type="text" placeholder="Τηλέφωνο" class="w-full border p-2 mb-4 rounded">
+            <div class="flex justify-end space-x-2">
+                <button onclick="closeModal()" class="normal-button2">Ákyro</button>
+                <button id="saveBtn" class="normal-button" onclick="saveClient()">Αποθήκευση</button>
+            </div>
+        </div>
+    </div>
+
+    <script src='static/scripts/clients.js'></script>
+</body>
+
+</html>
