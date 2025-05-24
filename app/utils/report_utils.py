@@ -1,5 +1,6 @@
 # app/utils/report_utils.py
 
+import os
 from io import BytesIO
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import cm
@@ -30,8 +31,20 @@ class PieChart(_DrawingEditorMixin,Drawing):
 
 # Register fonts
 def register_fonts():
-    pdfmetrics.registerFont(TTFont('Inter', './static/fonts/Inter-Regular.ttf'))
-    pdfmetrics.registerFont(TTFont('InterBold', './static/fonts/Inter-Bold.ttf'))
+    # Get the base directory of this file
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    
+    # Go up one level to the app directory
+    app_dir = os.path.abspath(os.path.join(base_dir, '..'))
+    
+    # Construct full font paths
+    font_dir = os.path.join(app_dir, 'static', 'fonts')
+    regular_font = os.path.join(font_dir, 'Inter-Regular.ttf')
+    bold_font = os.path.join(font_dir, 'Inter-Bold.ttf')
+    
+    # Register fonts
+    pdfmetrics.registerFont(TTFont('Inter', regular_font))
+    pdfmetrics.registerFont(TTFont('InterBold', bold_font))
 
 def generate_report(data: dict):
     register_fonts()
